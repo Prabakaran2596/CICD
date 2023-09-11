@@ -24,7 +24,7 @@ pipeline {
                     // Start an SSH agent using the private key
                     sshagent('0d955b09-6689-4fb8-9999-0b3fd8fe2b51') {
                         // Define the SSH command to execute on the server
-                        sh "ssh -o StrictHostKeyChecking=no -l $USERNAME -p $SERVER_PORT $SERVER_IP 'cd /home/test && git pull origin main && ./deploy_script.sh'"
+                        sh "ssh -o StrictHostKeyChecking=no -l $USERNAME -p $SERVER_PORT $SERVER_IP 'cd /home/jenkins && git pull origin main && ./deploy_script.sh'"
                     }
                  }
             }
