@@ -2,19 +2,31 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Check out your source code from version control
+                git url: 'https://github.com/yourusername/yourrepository.git'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building..'
+                // Build your code (e.g., compile, package)
+                sh 'mvn clean package'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
+
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                // Deploy your code (e.g., copy to server)
+                sh 'scp target/yourapplication.war user@yourserver:/path/to/deployment/directory'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                // Start your application
+                sh 'ssh user@yourserver "/path/to/start-script.sh"'
             }
         }
     }
