@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Check out your source code from version control
-                git url: 'https://github.com/yourusername/yourrepository.git'
+                git url: 'https://github.com/Prabakaran2596/CICD.git'
             }
         }
 
@@ -19,14 +19,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy your code (e.g., copy to server)
-                sh 'scp target/yourapplication.war user@yourserver:/path/to/deployment/directory'
+                sh 'scp target/yourapplication.war ubuntu@ec2-65-0-95-229.ap-south-1.compute.amazonaws.com:/home/ubuntu'
             }
         }
 
         stage('Run') {
             steps {
                 // Start your application
-                sh 'ssh user@yourserver "/path/to/start-script.sh"'
+                sh 'ssh ubuntu@ec2-65-0-95-229.ap-south-1.compute.amazonaws.com "/home/ubuntu/start-script.sh"'
             }
         }
     }
